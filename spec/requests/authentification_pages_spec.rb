@@ -7,8 +7,8 @@ describe "AuthentificationPages" do
   describe "signin page" do
     before { visit signin_path }
 
-    it { should have_selector('title',    text: full_title('Sign in')) }
-    it { should have_selector('h1', text: 'Sign in') }
+    it { should have_title 'Sign in'}
+    it { should have_top_level_header 'Sign in' }
   end
 
   describe "signin" do
@@ -17,7 +17,7 @@ describe "AuthentificationPages" do
     describe "with invalid information" do
       before { click_button "Sign in" }
 
-      it { should have_selector('h1', text: 'Sign in') }
+      it { should have_top_level_header 'Sign in' }
       it { should have_error_message }
 
       describe "after visiting another page" do
@@ -35,7 +35,7 @@ describe "AuthentificationPages" do
         click_button 'Sign in'
       end
 
-      it { should have_selector('title',   text: user.name) }
+      it { should have_title user.name }
       it { should have_link('Profile',     href: user_path(user)) }
       it { should have_link('Sign out',    href: signout_path) }
       it { should_not have_link('Sign in', href: signin_path) }
